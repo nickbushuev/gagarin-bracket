@@ -6,38 +6,27 @@
     <title>Кубок Гагарина 2025 Bracket Challenge</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-<body>
-    <section id="start-screen" class="screen">
-        <div class="logo-container">
-            <img src="images/logo_skld.png" alt="Скользкий лед" class="logo">
-            <img src="images/winline.png" alt="Winline" class="logo">
-        </div>
-        <h1>Кубок Гагарина 2025</h1>
-        <h2 class="highlight">Bracket Challenge</h2>
-        <p>Попробуй предугадать сетку плей-офф Кубка Гагарина 2025 и выигрывай призы</p>
-        <img src="images/gagarin_cup.png" alt="Кубок Гагарина" class="cup-image">
-        <button id="play-button">Играть</button>
-    </section>
-
-    <section id="bracket-screen" class="screen hidden">
-        <h2>Создай свою сетку плей-офф</h2>
-        <p>Угадай победителей всех раундов плей-офф Кубка Гагарина!</p>
-        <div class="rules">
-            <p>Выбери победителей каждой пары и укажи количество матчей</p>
-        </div>
-        <div class="rounds">
-            <button class="round-button" data-round="16">1/8</button>
-            <button class="round-button" data-round="8">1/4</button>
-            <button class="round-button" data-round="4">Полуфиналы</button>
-            <button class="round-button" data-round="2">Финал</button>
-        </div>
-        <div id="matches-container">
-            <!-- Здесь динамически будут добавляться пары команд -->
-        </div>
-        <button id="confirm-prediction" class="confirm-button">Подтвердить прогноз</button>
-    </section>
-    
-    <script src="script.js"></script>
+<body class="start-page">
+    <div class="container">
+        <header>
+            <div class="logo-container">
+                <img src="images/logo_skld.png" alt="Скользкий Лед">
+                <img src="images/logo_winline.png" alt="Winline">
+            </div>
+        </header>
+        
+        <main>
+            <h1>Кубок Гагарина 2025</h1>
+            <h2 class="highlight">Bracket Challenge</h2>
+            <p class="description">
+                Попробуй предугадать сетку плей-офф Кубка Гагарина 2025 и выигрывай призы!
+            </p>
+            <div class="cup-container">
+                <img src="images/gagarin_cup.png" alt="Кубок Гагарина" class="cup-image">
+            </div>
+            <a href="bracket.html" class="play-button">Играть</a>
+        </main>
+    </div>
 </body>
 </html>
 
