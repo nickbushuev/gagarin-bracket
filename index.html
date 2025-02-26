@@ -7,75 +7,36 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div id="start-screen" class="start-screen">
-        <img src="winline-logo.png" alt="Winline" class="logo">
-        <img src="skolzkyled-logo.png" alt="Скользкий Лед" class="logo">
-        <h1>Кубок Гагарина 2025 Bracket Challenge</h1>
-        <img src="gagarin-cup.png" alt="Кубок Гагарина" class="trophy">
-        <button onclick="startGame()">Играть</button>
-    </div>
+    <section id="start-screen" class="screen">
+        <div class="logo-container">
+            <img src="logo_skld.png" alt="Скользкий лед">
+            <img src="logo_winline.png" alt="Winline">
+        </div>
+        <h1>Кубок Гагарина 2025</h1>
+        <h2 class="highlight">Bracket Challenge</h2>
+        <p>Попробуй предугадать сетку плей-офф Кубка Гагарина 2025 и выигрывай призы</p>
+        <img src="gagarin_cup.png" alt="Кубок Гагарина" class="cup-image">
+        <button id="play-button">Играть</button>
+    </section>
 
-    <div id="bracket-screen" class="hidden">
-        <header>
-            <h1>Плей-офф КХЛ</h1>
-            <nav>
-                <ul>
-                    <li><a href="#round16">1/8</a></li>
-                    <li><a href="#round8">1/4</a></li>
-                    <li><a href="#semifinal">Полуфинал</a></li>
-                    <li><a href="#final">Финал</a></li>
-                </ul>
-            </nav>
-        </header>
-
-        <section id="round16" class="bracket">
-            <h2>1/8 финала</h2>
-            <div class="conference">
-                <h3>Западная конференция</h3>
-                <div class="matchup"><span>Локомотив (1)</span> vs <span>Торпедо (8)</span></div>
-                <div class="matchup"><span>Спартак (2)</span> vs <span>СКА (7)</span></div>
-                <div class="matchup"><span>Северсталь (3)</span> vs <span>Динамо Мн (6)</span></div>
-                <div class="matchup"><span>Динамо М (4)</span> vs <span>ЦСКА (5)</span></div>
-            </div>
-            <div class="conference">
-                <h3>Восточная конференция</h3>
-                <div class="matchup"><span>Трактор (1)</span> vs <span>Сибирь (8)</span></div>
-                <div class="matchup"><span>Автомобилист (2)</span> vs <span>Адмирал (7)</span></div>
-                <div class="matchup"><span>Ак Барс (3)</span> vs <span>Авангард (6)</span></div>
-                <div class="matchup"><span>Салават Юлаев (4)</span> vs <span>Металлург Мг (5)</span></div>
-            </div>
-        </section>
-
-        <section id="round8" class="bracket">
-            <h2>1/4 финала</h2>
-            <div class="conference">
-                <h3>Первая группа</h3>
-                <div class="matchup">Лучшая команда Запада vs Худшая команда Востока</div>
-                <div class="matchup">Вторая лучшая команда Востока vs Третья команда Запада</div>
-            </div>
-            <div class="conference">
-                <h3>Вторая группа</h3>
-                <div class="matchup">Лучшая команда Востока vs Четвёртая команда Запада</div>
-                <div class="matchup">Вторая команда Запада vs Третья команда Востока</div>
-            </div>
-        </section>
-
-        <section id="semifinal" class="bracket">
-            <h2>Полуфинал</h2>
-            <div class="matchup">Победитель первой группы vs Победитель второй группы</div>
-        </section>
-
-        <section id="final" class="bracket">
-            <h2>Финал</h2>
-            <div class="matchup">Финалисты</div>
-        </section>
-    </div>
-
-    <script>
-        function startGame() {
-            document.getElementById('start-screen').classList.add('hidden');
-            document.getElementById('bracket-screen').classList.remove('hidden');
-        }
-    </script>
+    <section id="bracket-screen" class="screen hidden">
+        <h2>Создай свою сетку плей-офф</h2>
+        <p>Угадай победителей всех раундов плей-офф Кубка Гагарина!</p>
+        <div class="rules">
+            <p>Выбери победителей каждой пары и укажи количество матчей</p>
+        </div>
+        <div class="rounds">
+            <button class="round-button" data-round="16">1/8</button>
+            <button class="round-button" data-round="8">1/4</button>
+            <button class="round-button" data-round="4">Полуфиналы</button>
+            <button class="round-button" data-round="2">Финал</button>
+        </div>
+        <div id="matches-container">
+            <!-- Здесь динамически будут добавляться пары команд -->
+        </div>
+        <button id="confirm-prediction" class="confirm-button">Подтвердить прогноз</button>
+    </section>
+    
+    <script src="script.js"></script>
 </body>
 </html>
