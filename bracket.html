@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Плей-офф Кубка Гагарина</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <section id="bracket-screen" class="screen">
+        <h2>Создай свою сетку плей-офф</h2>
+        <p>Угадай победителей всех раундов плей-офф Кубка Гагарина!</p>
+        <div class="rules">
+            <p>Выбери победителей каждой пары и укажи количество матчей</p>
+        </div>
+        <div class="rounds">
+            <button class="round-button" data-round="16">1/8</button>
+            <button class="round-button" data-round="8">1/4</button>
+            <button class="round-button" data-round="4">Полуфиналы</button>
+            <button class="round-button" data-round="2">Финал</button>
+        </div>
+        <div id="matches-container">
+            <!-- Здесь динамически будут добавляться пары команд -->
+        </div>
+        <button id="confirm-prediction" class="confirm-button">Подтвердить прогноз</button>
+    </section>
+    
+    <script src="script.js"></script>
+</body>
+</html>
