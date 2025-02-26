@@ -1,112 +1,120 @@
-document.addEventListener("DOMContentLoaded", function () {
-    console.log("Скрипт загружен");
+/* Общие стили */
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #121212;
+    color: white;
+    margin: 0;
+    padding: 0;
+}
 
-    // Обработчик кнопки "Играть" (на стартовой странице)
-    const playButton = document.getElementById("play-button");
-    if (playButton) {
-        playButton.addEventListener("click", function () {
-            window.location.href = "bracket.html"; 
-        });
-    }
+.screen {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    padding: 20px;
+}
 
-    // Логика для страницы плей-офф
-    const matchesContainer = document.getElementById("matches-container");
-    const confirmButton = document.getElementById("confirm-prediction");
+.visible {
+    display: flex;
+}
 
-    if (matchesContainer && confirmButton) {
-        const teams = {
-            "1/8": [
-                ["Локомотив", "Торпедо"],
-                ["Спартак", "СКА"],
-                ["ЦСКА", "Динамо Мн"],
-                ["Динамо М", "Северсталь"],
-                ["Трактор", "Сибирь"],
-                ["Автомобилист", "Адмирал"],
-                ["Ак Барс", "Авангард"],
-                ["Салават Юлаев", "Металлург Мг"]
-            ],
-            "1/4": [],
-            "Полуфиналы": [],
-            "Финал": []
-        };
+/* Стартовая страница */
+#start-screen {
+    background: linear-gradient(135deg, #1e1e1e, #292929);
+}
 
-        let currentRound = "1/8";
-        renderMatches(currentRound);
+.logo-container img {
+    height: 60px;
+    margin: 10px;
+}
 
-        // Обработчик выбора раундов
-        document.querySelectorAll(".round-button").forEach(button => {
-            button.addEventListener("click", function () {
-                currentRound = this.getAttribute("data-round");
-                renderMatches(currentRound);
-            });
-        });
+h1 {
+    font-size: 2.5rem;
+    margin: 10px 0;
+}
 
-        // Функция отрисовки матчей
-        function renderMatches(round) {
-            matchesContainer.innerHTML = "";
-            if (!teams[round]) return;
+h2.highlight {
+    color: #ff8c00;
+    font-size: 2rem;
+}
 
-            teams[round].forEach(pair => {
-                let matchDiv = document.createElement("div");
-                matchDiv.classList.add("match");
+p {
+    font-size: 1.2rem;
+    max-width: 80%;
+}
 
-                matchDiv.innerHTML = `
-                    <span>${pair[0]}</span>
-                    <input type="radio" name="${pair[0]}-${pair[1]}" value="${pair[0]}" required> 
-                    <input type="radio" name="${pair[0]}-${pair[1]}" value="${pair[1]}" required> 
-                    <span>${pair[1]}</span>
-                    <input type="number" min="4" max="7" placeholder="Кол-во матчей" required>
-                `;
-                matchesContainer.appendChild(matchDiv);
-            });
-        }
+.cup-image {
+    width: 200px;
+    height: auto;
+    margin: 20px 0;
+}
 
-        // Обработчик кнопки "Подтвердить прогноз"
-        confirmButton.addEventListener("click", function () {
-            let predictions = [];
-            let isValid = true;
+button {
+    background-color: #ff8c00;
+    color: white;
+    font-size: 1.5rem;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+}
 
-            document.querySelectorAll(".match").forEach(match => {
-                let teams = match.querySelectorAll("span");
-                let radios = match.querySelectorAll("input[type='radio']:checked");
-                let gamesInput = match.querySelector("input[type='number']");
+button:hover {
+    background-color: #ff6c00;
+}
 
-                if (radios.length === 0 || !gamesInput.value) {
-                    isValid = false;
-                } else {
-                    predictions.push({
-                        match: `${teams[0].innerText} vs ${teams[1].innerText}`,
-                        winner: radios[0].value,
-                        games: gamesInput.value
-                    });
-                }
-            });
+/* Страница с сеткой плей-офф */
+#bracket-screen {
+    background: #1e1e1e;
+    padding: 20px;
+}
 
-            if (!isValid) {
-                alert("Выберите победителей и количество матчей!");
-                return;
-            }
+.rounds {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
 
-            sendToGoogleSheets(predictions);
-        });
+.round-button {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 10px;
+    cursor: pointer;
+}
 
-        // Функция отправки данных в Google Sheets
-        function sendToGoogleSheets(predictions) {
-            const scriptURL = "https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec";
-            const formData = new FormData();
+.round-button.active {
+    background-color: #ff8c00;
+}
 
-            formData.append("predictions", JSON.stringify(predictions));
+.match {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 15px 0;
+    background: #292929;
+    padding: 10px;
+    border-radius: 10px;
+}
 
-            fetch(scriptURL, { method: "POST", body: formData })
-                .then(response => response.json())
-                .then(data => {
-                    alert("Прогноз успешно отправлен!");
-                    console.log("Ответ сервера:", data);
-                })
-                .catch(error => {
-                    alert("Ошибка при отправке данных!");
-                    console.error("Ошибка:", error);
-                });
-        }
-    }
-});
+.match img {
+    height: 40px;
+    margin: 0 10px;
+}
+
+.winner-select {
+    cursor: pointer;
+}
+
+input {
+    width: 50px;
+    padding: 5px;
+    margin-left: 10px;
+    border: 1px solid red;
+    text-align: center;
+}
+
