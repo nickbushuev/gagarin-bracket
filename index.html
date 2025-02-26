@@ -9,8 +9,8 @@
 <body>
     <section id="start-screen" class="screen">
         <div class="logo-container">
-            <img src="images/logo_skld.png" alt="Скользкий лед">
-            <img src="images/logo_winline.png" alt="Winline">
+            <img src="images/logo_skld.png" alt="Скользкий лед" class="logo">
+            <img src="images/winline.png" alt="Winline" class="logo">
         </div>
         <h1>Кубок Гагарина 2025</h1>
         <h2 class="highlight">Bracket Challenge</h2>
@@ -19,10 +19,25 @@
         <button id="play-button">Играть</button>
     </section>
 
-    <script>
-        document.getElementById("play-button").addEventListener("click", function () {
-            window.location.href = "bracket.html";
-        });
-    </script>
+    <section id="bracket-screen" class="screen hidden">
+        <h2>Создай свою сетку плей-офф</h2>
+        <p>Угадай победителей всех раундов плей-офф Кубка Гагарина!</p>
+        <div class="rules">
+            <p>Выбери победителей каждой пары и укажи количество матчей</p>
+        </div>
+        <div class="rounds">
+            <button class="round-button" data-round="16">1/8</button>
+            <button class="round-button" data-round="8">1/4</button>
+            <button class="round-button" data-round="4">Полуфиналы</button>
+            <button class="round-button" data-round="2">Финал</button>
+        </div>
+        <div id="matches-container">
+            <!-- Здесь динамически будут добавляться пары команд -->
+        </div>
+        <button id="confirm-prediction" class="confirm-button">Подтвердить прогноз</button>
+    </section>
+    
+    <script src="script.js"></script>
 </body>
 </html>
+
